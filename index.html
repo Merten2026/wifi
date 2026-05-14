@@ -9,6 +9,7 @@
   <style>
     * {
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -29,18 +30,18 @@
 
     .card {
       width: 100%;
-      max-width: 420px;
+      max-width: 440px;
 
       background: rgba(17, 24, 39, 0.85);
       backdrop-filter: blur(18px);
+
+      border: 1px solid rgba(255,255,255,0.08);
 
       border-radius: 28px;
 
       padding: 34px;
 
       text-align: center;
-
-      border: 1px solid rgba(255,255,255,0.08);
 
       box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     }
@@ -62,49 +63,83 @@
     }
 
     .network {
-      margin-top: 28px;
-      font-size: 24px;
+      margin-top: 26px;
+      font-size: 22px;
       font-weight: 700;
     }
 
-    .box {
-      margin-top: 16px;
+    .password {
+      margin-top: 14px;
+
+      background: #1e293b;
+
       padding: 16px;
 
       border-radius: 16px;
 
-      background: #1e293b;
-
       font-size: 18px;
+
+      word-break: break-all;
     }
 
-    a.button {
-      display: block;
+    .section-title {
+      margin-top: 26px;
+      font-size: 14px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .qr {
+      margin-top: 12px;
+
+      width: 220px;
+
+      background: white;
+
+      padding: 12px;
+
+      border-radius: 16px;
+    }
+
+    button {
+      width: 100%;
 
       margin-top: 18px;
 
       padding: 16px;
 
+      border: none;
+
       border-radius: 16px;
 
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-
-      color: white;
-
-      text-decoration: none;
-
+      font-size: 18px;
       font-weight: 600;
 
-      font-size: 18px;
+      cursor: pointer;
     }
 
-    a.button:active {
-      transform: scale(0.98);
+    .primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+    }
+
+    .secondary {
+      background: rgba(255,255,255,0.08);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .success {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #4ade80;
+      display: none;
     }
 
     .hint {
-      margin-top: 22px;
-      font-size: 14px;
+      margin-top: 20px;
+      font-size: 13px;
       color: #94a3b8;
       line-height: 1.6;
     }
@@ -117,31 +152,53 @@
 
     <div class="icon">📶</div>
 
-    <h1>Guest Wi-Fi</h1>
+    <h1>Guest Wi-Fi Access</h1>
 
     <div class="subtitle">
-      Tap button → copy password instantly
+      Connect in seconds using NFC or QR
     </div>
 
     <div class="network">
-      Home Wi-Fi Shultz
+      NSZK_GUEST
     </div>
 
-    <div class="box">
-      Password: <b>A251987m</b>
+    <div class="password">
+      A251987m
     </div>
 
-    <!-- 🔥 ВАЖНО: сюда вставляется Shortcut -->
-    <a class="button" href="shortcuts://run-shortcut?name=WiFi%20Connect">
-      Connect Automatically
-    </a>
+    <button class="primary" onclick="copyPassword()">
+      Copy Password
+    </button>
+
+    <div class="success" id="success">
+      Password copied ✔
+    </div>
+
+    <div class="section-title">
+      QR Code (fastest method)
+    </div>
+
+    <img
+      class="qr"
+      src="wifi-qr.png"
+      alt="Wi-Fi QR"
+    />
 
     <div class="hint">
-      iPhone: tap button → then go to Settings → Wi-Fi<br>
-      Android: use NFC or copy password
+      📱 iPhone: scan QR → instant connect<br>
+      📶 NFC: opens this page → copy password<br>
+      ⚡ Best: QR for fastest connection
     </div>
 
   </div>
+
+  <script>
+    function copyPassword() {
+      navigator.clipboard.writeText("A251987m");
+
+      document.getElementById("success").style.display = "block";
+    }
+  </script>
 
 </body>
 </html>
