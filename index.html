@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Доступ к Wi-Fi</title>
+  <title>Wi-Fi доступ</title>
 
   <style>
     :root {
@@ -19,8 +19,8 @@
 
     body.light {
       --bg: #f2f2f7;
-      --card: rgba(255,255,255,0.75);
-      --text: #000000;
+      --card: rgba(255,255,255,0.8);
+      --text: #000;
       --sub: #6b7280;
       --border: rgba(0,0,0,0.08);
     }
@@ -35,12 +35,12 @@
       min-height: 100vh;
 
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
 
       padding: 24px;
 
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Arial;
+      font-family: -apple-system, BlinkMacSystemFont, Arial;
 
       background: radial-gradient(circle at top, #1e293b, var(--bg));
       color: var(--text);
@@ -48,7 +48,7 @@
 
     .card {
       width: 100%;
-      max-width: 440px;
+      max-width: 420px;
 
       background: var(--card);
       backdrop-filter: blur(20px);
@@ -62,40 +62,61 @@
       text-align: center;
 
       box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+
+      position: relative;
     }
 
-    .topbar {
+    /* 🌗 theme icon top-right */
+    .theme-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+
+      width: 38px;
+      height: 38px;
+
+      border-radius: 10px;
+
+      background: rgba(120,120,128,0.18);
+
+      border: none;
+
+      cursor: pointer;
+
+      font-size: 18px;
+
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: center;
     }
 
-    .title {
-      font-size: 22px;
-      font-weight: 700;
+    .wifi-icon {
+      font-size: 56px;
       margin-top: 10px;
     }
 
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+    }
+
     .subtitle {
-      margin-top: 6px;
+      margin-top: 8px;
       font-size: 14px;
       color: var(--sub);
       line-height: 1.5;
     }
 
-    .wifi-icon {
-      font-size: 56px;
-      margin: 10px 0;
-    }
-
     .network {
-      margin-top: 18px;
+      margin-top: 22px;
       font-size: 20px;
       font-weight: 700;
     }
 
     .password {
       margin-top: 14px;
+
       padding: 14px;
 
       border-radius: 14px;
@@ -107,10 +128,10 @@
       word-break: break-all;
     }
 
-    button {
+    button.main {
       width: 100%;
 
-      margin-top: 14px;
+      margin-top: 16px;
 
       padding: 14px;
 
@@ -122,16 +143,9 @@
       font-weight: 600;
 
       cursor: pointer;
-    }
 
-    .primary {
       background: var(--accent);
       color: white;
-    }
-
-    .secondary {
-      background: rgba(120,120,128,0.18);
-      color: var(--text);
     }
 
     .success {
@@ -141,36 +155,19 @@
       display: none;
     }
 
-    .section {
-      margin-top: 22px;
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--sub);
-    }
-
-    .qr {
-      margin-top: 10px;
-      width: 200px;
-      padding: 10px;
-      border-radius: 14px;
-      background: white;
-    }
-
     .hint {
-      margin-top: 16px;
+      margin-top: 22px;
+
       font-size: 13px;
+
       color: var(--sub);
-      line-height: 1.5;
+
+      line-height: 1.6;
+
+      text-align: left;
     }
 
-    .icon-btn {
-      background: rgba(120,120,128,0.18);
-      border-radius: 10px;
-      padding: 8px 10px;
-      font-size: 14px;
-      cursor: pointer;
-      border: none;
+    .hint b {
       color: var(--text);
     }
   </style>
@@ -180,27 +177,28 @@
 
   <div class="card">
 
-    <div class="topbar">
-      <div></div>
-
-      <button class="icon-btn" onclick="toggleTheme()">
-        🌗 Тема
-      </button>
-    </div>
+    <!-- 🌗 Theme toggle -->
+    <button class="theme-btn" onclick="toggleTheme()">
+      🌙
+    </button>
 
     <div class="wifi-icon">📶</div>
 
-    <div class="title">Доступ к Wi-Fi</div>
+    <h1>Wi-Fi</h1>
 
     <div class="subtitle">
-      Поднесите устройство к NFC или используйте QR-код для быстрого подключения
+      Подключение через NFC или вручную
     </div>
 
-    <div class="network">NSZK_GUEST</div>
+    <div class="network">
+      NSZK_GUEST
+    </div>
 
-    <div class="password">A251987m</div>
+    <div class="password">
+      A251987m
+    </div>
 
-    <button class="primary" onclick="copyPassword()">
+    <button class="main" onclick="copyPassword()">
       Скопировать пароль
     </button>
 
@@ -208,18 +206,21 @@
       Пароль скопирован ✔
     </div>
 
-    <div class="section">QR-код (быстрый способ)</div>
-
-    <img class="qr" src="wifi-qr.png" alt="Wi-Fi QR"/>
-
-    <button class="secondary" onclick="copyPassword()">
-      Скопировать ещё раз
-    </button>
-
     <div class="hint">
-      📱 iPhone: наведите камеру на QR → подключение<br>
-      📶 NFC: открывает эту страницу<br>
-      ⚡ Рекомендуется: QR для мгновенного подключения
+
+      <b>iPhone:</b><br>
+      1. Скопируйте пароль<br>
+      2. Откройте Настройки → Wi-Fi<br>
+      3. Выберите сеть NSZK_GUEST<br>
+      4. Вставьте пароль
+
+      <br><br>
+
+      <b>Android:</b><br>
+      1. Поднесите телефон к NFC или откройте Wi-Fi<br>
+      2. Выберите сеть<br>
+      3. Подключение произойдёт автоматически или введите пароль
+
     </div>
 
   </div>
