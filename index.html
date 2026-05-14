@@ -1,1 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Guest Wi-Fi</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 24px;
+
+      background:
+        radial-gradient(circle at top,
+        #1e293b 0%,
+        #0f172a 55%);
+
+      color: white;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        Arial,
+        sans-serif;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+
+      padding: 34px;
+
+      border-radius: 32px;
+
+      background:
+        rgba(17, 24, 39, 0.78);
+
+      backdrop-filter: blur(20px);
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.45);
+
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 68px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      margin-top: 12px;
+
+      color: #94a3b8;
+
+      font-size: 16px;
+
+      line-height: 1.5;
+    }
+
+    .network {
+      margin-top: 34px;
+
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .password-box {
+      margin-top: 18px;
+
+      padding: 18px;
+
+      border-radius: 18px;
+
+      background: rgba(30,41,59,0.9);
+
+      border:
+        1px solid rgba(255,255,255,0.05);
+
+      font-size: 20px;
+
+      word-break: break-all;
+    }
+
+    .btn {
+      width: 100%;
+
+      border: none;
+
+      border-radius: 18px;
+
+      padding: 18px;
+
+      margin-top: 18px;
+
+      font-size: 18px;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .primary {
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #1d4ed8
+        );
+
+      color: white;
+    }
+
+    .secondary {
+      background:
+        rgba(255,255,255,0.08);
+
+      color: white;
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+    }
+
+    .hint {
+      margin-top: 26px;
+
+      color: #94a3b8;
+
+      font-size: 14px;
+
+      line-height: 1.6;
+    }
+
+    .success {
+      margin-top: 14px;
+
+      color: #4ade80;
+
+      font-size: 15px;
+
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <div class="icon">
+      📶
+    </div>
+
+    <h1>Guest Wi-Fi</h1>
+
+    <div class="subtitle">
+      Tap the button below to copy the password<br>
+      then open Wi-Fi settings
+    </div>
+
+    <div class="network">
+      Home Wi-Fi Shultz
+    </div>
+
+    <div class="password-box" id="password">
+      A251987m
+    </div>
+
+    <button
+      class="btn primary"
+      onclick="copyPassword()"
+    >
+      Copy Password
+    </button>
+
+    <button
+      class="btn secondary"
+      onclick="openWifiSettings()"
+    >
+      Open Wi-Fi Settings
+    </button>
+
+    <div
+      class="success"
+      id="success"
+    >
+      Password copied
+    </div>
+
+    <div class="hint">
+      iPhone:<br>
+      Settings → Wi-Fi → Home Wi-Fi Shultz
+    </div>
+
+  </div>
+
+  <script>
+    function copyPassword() {
+
+      navigator.clipboard.writeText("A251987m");
+
+      document
+        .getElementById("success")
+        .style.display = "block";
+    }
+
+    function openWifiSettings() {
+
+      window.location.href =
+        "App-Prefs:root=WIFI";
+
+      setTimeout(() => {
+
+        window.location.href =
+          "prefs:root=WIFI";
+
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>
