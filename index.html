@@ -4,28 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Wi-Fi</title>
+  <title>Wi-Fi Access</title>
 
   <style>
     * {
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       margin: 0;
       min-height: 100vh;
-      padding: 24px;
 
       display: flex;
       justify-content: center;
       align-items: center;
 
-      background: radial-gradient(circle at top, #1e293b 0%, #0f172a 60%);
+      padding: 24px;
 
+      background: radial-gradient(circle at top, #1e293b, #0f172a);
+
+      font-family: -apple-system, BlinkMacSystemFont, Arial;
       color: white;
-
-      font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
     }
 
     .card {
@@ -35,13 +34,13 @@
       background: rgba(17, 24, 39, 0.85);
       backdrop-filter: blur(18px);
 
-      border: 1px solid rgba(255,255,255,0.08);
-
       border-radius: 28px;
 
       padding: 34px;
 
       text-align: center;
+
+      border: 1px solid rgba(255,255,255,0.08);
 
       box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     }
@@ -53,14 +52,13 @@
 
     h1 {
       margin: 0;
-      font-size: 32px;
+      font-size: 30px;
     }
 
     .subtitle {
       margin-top: 10px;
       color: #94a3b8;
       font-size: 15px;
-      line-height: 1.5;
     }
 
     .network {
@@ -69,59 +67,46 @@
       font-weight: 700;
     }
 
-    .password {
+    .box {
       margin-top: 16px;
       padding: 16px;
 
-      background: #1e293b;
       border-radius: 16px;
 
+      background: #1e293b;
+
       font-size: 18px;
-
-      word-break: break-all;
-
-      border: 1px solid rgba(255,255,255,0.06);
     }
 
-    button {
-      width: 100%;
+    a.button {
+      display: block;
 
       margin-top: 18px;
 
       padding: 16px;
 
-      border: none;
       border-radius: 16px;
 
-      font-size: 18px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+
+      color: white;
+
+      text-decoration: none;
+
       font-weight: 600;
 
-      cursor: pointer;
-
-      transition: 0.2s;
+      font-size: 18px;
     }
 
-    .primary {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: white;
-    }
-
-    .primary:active {
+    a.button:active {
       transform: scale(0.98);
     }
 
     .hint {
-      margin-top: 24px;
+      margin-top: 22px;
       font-size: 14px;
       color: #94a3b8;
       line-height: 1.6;
-    }
-
-    .success {
-      margin-top: 12px;
-      color: #4ade80;
-      display: none;
-      font-size: 14px;
     }
   </style>
 </head>
@@ -132,45 +117,31 @@
 
     <div class="icon">📶</div>
 
-    <h1>Wi-Fi</h1>
+    <h1>Guest Wi-Fi</h1>
 
     <div class="subtitle">
-      Tap button to copy password<br>
-      then open Wi-Fi settings
+      Tap button → copy password instantly
     </div>
 
     <div class="network">
       Home Wi-Fi Shultz
     </div>
 
-    <div class="password" id="password">
-      A251987m
+    <div class="box">
+      Password: <b>A251987m</b>
     </div>
 
-    <button class="primary" onclick="copyPassword()">
-      Copy Password
-    </button>
-
-    <div class="success" id="success">
-      Password copied ✔
-    </div>
+    <!-- 🔥 ВАЖНО: сюда вставляется Shortcut -->
+    <a class="button" href="shortcuts://run-shortcut?name=WiFi%20Connect">
+      Connect Automatically
+    </a>
 
     <div class="hint">
-      iPhone:<br>
-      Settings → Wi-Fi → Home Wi-Fi Shultz<br><br>
-
-      Then paste password manually
+      iPhone: tap button → then go to Settings → Wi-Fi<br>
+      Android: use NFC or copy password
     </div>
 
   </div>
-
-  <script>
-    function copyPassword() {
-      navigator.clipboard.writeText("A251987m");
-
-      document.getElementById("success").style.display = "block";
-    }
-  </script>
 
 </body>
 </html>
