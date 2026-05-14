@@ -2,11 +2,29 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Wi-Fi Access</title>
+  <title>Доступ к Wi-Fi</title>
 
   <style>
+    :root {
+      --bg: #0b0f17;
+      --card: rgba(28, 28, 30, 0.72);
+      --text: #ffffff;
+      --sub: #a1a1aa;
+      --accent: #0a84ff;
+      --border: rgba(255,255,255,0.08);
+      --success: #34c759;
+    }
+
+    body.light {
+      --bg: #f2f2f7;
+      --card: rgba(255,255,255,0.75);
+      --text: #000000;
+      --sub: #6b7280;
+      --border: rgba(0,0,0,0.08);
+    }
+
     * {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
@@ -17,131 +35,143 @@
       min-height: 100vh;
 
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
 
       padding: 24px;
 
-      background: radial-gradient(circle at top, #1e293b, #0f172a);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Arial;
 
-      font-family: -apple-system, BlinkMacSystemFont, Arial;
-      color: white;
+      background: radial-gradient(circle at top, #1e293b, var(--bg));
+      color: var(--text);
     }
 
     .card {
       width: 100%;
       max-width: 440px;
 
-      background: rgba(17, 24, 39, 0.85);
-      backdrop-filter: blur(18px);
+      background: var(--card);
+      backdrop-filter: blur(20px);
 
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
 
       border-radius: 28px;
 
-      padding: 34px;
+      padding: 28px;
 
       text-align: center;
 
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
     }
 
-    .icon {
-      font-size: 64px;
-      margin-bottom: 10px;
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 30px;
+    .title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 10px;
     }
 
     .subtitle {
-      margin-top: 10px;
-      color: #94a3b8;
-      font-size: 15px;
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 1.5;
+    }
+
+    .wifi-icon {
+      font-size: 56px;
+      margin: 10px 0;
     }
 
     .network {
-      margin-top: 26px;
-      font-size: 22px;
+      margin-top: 18px;
+      font-size: 20px;
       font-weight: 700;
     }
 
     .password {
       margin-top: 14px;
+      padding: 14px;
 
-      background: #1e293b;
+      border-radius: 14px;
 
-      padding: 16px;
+      background: rgba(120,120,128,0.18);
 
-      border-radius: 16px;
-
-      font-size: 18px;
+      font-size: 17px;
 
       word-break: break-all;
-    }
-
-    .section-title {
-      margin-top: 26px;
-      font-size: 14px;
-      color: #94a3b8;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .qr {
-      margin-top: 12px;
-
-      width: 220px;
-
-      background: white;
-
-      padding: 12px;
-
-      border-radius: 16px;
     }
 
     button {
       width: 100%;
 
-      margin-top: 18px;
+      margin-top: 14px;
 
-      padding: 16px;
+      padding: 14px;
 
       border: none;
 
-      border-radius: 16px;
+      border-radius: 14px;
 
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
 
       cursor: pointer;
     }
 
     .primary {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      background: var(--accent);
       color: white;
     }
 
     .secondary {
-      background: rgba(255,255,255,0.08);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(120,120,128,0.18);
+      color: var(--text);
     }
 
     .success {
-      margin-top: 12px;
-      font-size: 14px;
-      color: #4ade80;
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--success);
       display: none;
     }
 
+    .section {
+      margin-top: 22px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--sub);
+    }
+
+    .qr {
+      margin-top: 10px;
+      width: 200px;
+      padding: 10px;
+      border-radius: 14px;
+      background: white;
+    }
+
     .hint {
-      margin-top: 20px;
+      margin-top: 16px;
       font-size: 13px;
-      color: #94a3b8;
-      line-height: 1.6;
+      color: var(--sub);
+      line-height: 1.5;
+    }
+
+    .icon-btn {
+      background: rgba(120,120,128,0.18);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      color: var(--text);
     }
   </style>
 </head>
@@ -150,44 +180,46 @@
 
   <div class="card">
 
-    <div class="icon">📶</div>
+    <div class="topbar">
+      <div></div>
 
-    <h1>Guest Wi-Fi Access</h1>
+      <button class="icon-btn" onclick="toggleTheme()">
+        🌗 Тема
+      </button>
+    </div>
+
+    <div class="wifi-icon">📶</div>
+
+    <div class="title">Доступ к Wi-Fi</div>
 
     <div class="subtitle">
-      Connect in seconds using NFC or QR
+      Поднесите устройство к NFC или используйте QR-код для быстрого подключения
     </div>
 
-    <div class="network">
-      NSZK_GUEST
-    </div>
+    <div class="network">NSZK_GUEST</div>
 
-    <div class="password">
-      A251987m
-    </div>
+    <div class="password">A251987m</div>
 
     <button class="primary" onclick="copyPassword()">
-      Copy Password
+      Скопировать пароль
     </button>
 
     <div class="success" id="success">
-      Password copied ✔
+      Пароль скопирован ✔
     </div>
 
-    <div class="section-title">
-      QR Code (fastest method)
-    </div>
+    <div class="section">QR-код (быстрый способ)</div>
 
-    <img
-      class="qr"
-      src="wifi-qr.png"
-      alt="Wi-Fi QR"
-    />
+    <img class="qr" src="wifi-qr.png" alt="Wi-Fi QR"/>
+
+    <button class="secondary" onclick="copyPassword()">
+      Скопировать ещё раз
+    </button>
 
     <div class="hint">
-      📱 iPhone: scan QR → instant connect<br>
-      📶 NFC: opens this page → copy password<br>
-      ⚡ Best: QR for fastest connection
+      📱 iPhone: наведите камеру на QR → подключение<br>
+      📶 NFC: открывает эту страницу<br>
+      ⚡ Рекомендуется: QR для мгновенного подключения
     </div>
 
   </div>
@@ -195,8 +227,11 @@
   <script>
     function copyPassword() {
       navigator.clipboard.writeText("A251987m");
-
       document.getElementById("success").style.display = "block";
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light");
     }
   </script>
 
