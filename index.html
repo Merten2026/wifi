@@ -1,51 +1,154 @@
 <!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Guest Wi-Fi</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #0f172a;
+      color: white;
+      font-family: Arial, sans-serif;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+
+      background: #111827;
+
+      border-radius: 24px;
+
+      padding: 32px;
+
+      text-align: center;
+
+      box-sizing: border-box;
+
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .wifi-icon {
+      font-size: 64px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      margin-top: 10px;
+      margin-bottom: 28px;
+    }
+
+    .qr {
+      width: 240px;
+
+      background: white;
+
+      padding: 12px;
+
+      border-radius: 18px;
+    }
+
+    .network {
+      margin-top: 28px;
+
+      font-size: 24px;
+
+      font-weight: bold;
+    }
 
     .password {
-      margin-top: 12px;
+      margin-top: 14px;
+
       background: #1e293b;
+
       padding: 14px;
-      border-radius: 12px;
+
+      border-radius: 14px;
+
       font-size: 18px;
+
+      word-break: break-all;
     }
 
     button {
       margin-top: 18px;
+
       width: 100%;
-      padding: 14px;
+
+      padding: 16px;
+
       border: none;
-      border-radius: 12px;
+
+      border-radius: 14px;
+
       background: #2563eb;
+
       color: white;
+
       font-size: 18px;
+
+      cursor: pointer;
+    }
+
+    button:active {
+      opacity: 0.8;
     }
 
     .hint {
-      margin-top: 20px;
+      margin-top: 22px;
+
       color: #94a3b8;
+
       font-size: 14px;
+
       line-height: 1.5;
     }
   </style>
 </head>
+
 <body>
+
   <div class="card">
 
-    <div style="font-size:60px;">📶</div>
+    <div class="wifi-icon">
+      📶
+    </div>
 
-    <h1>Guest Wi‑Fi</h1>
+    <h1>Guest Wi-Fi</h1>
 
     <div class="subtitle">
       Scan QR code to connect
     </div>
 
-    <img class="qr" src="wifi-qr.png" alt="Wi‑Fi QR" />
+    <img
+      class="qr"
+      src="wifi-qr.svg"
+      alt="Wi-Fi QR"
+    >
 
     <div class="network">
-      NSZK_GUEST
+      Home Wi-Fi Shultz
     </div>
 
     <div class="password" id="password">
-      SuperPass123
+      A251987m
     </div>
 
     <button onclick="copyPassword()">
@@ -65,5 +168,6 @@
       alert('Password copied');
     }
   </script>
+
 </body>
 </html>
